@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mara Lyz Nails Academy | Esmalteria de Alto Padrão & Formação Profissional</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clay: '#A0522D',
+                        stone: '#8B8680',
+                        cream: '#FAF0E6',
+                        charcoal: '#36454F',
+                        matcha: '#6B7B3A',
+                        indigo: '#3F51B5',
+                        gold: '#D4AF37',
+                        blush: '#E8C4B8'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Wabi-Sabi & Kintsugi Styles -->
+    <style>
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #FAF0E6;
+            color: #36454F;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Gold Kintsugi Hairline Accent */
+        .kintsugi-line {
+            position: relative;
+        }
+        .kintsugi-line::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #D4AF37 0%, rgba(212, 175, 55, 0.2) 100%);
+        }
+
+        /* Imperfect organic borders (Wabi-Sabi aesthetics) */
+        .border-wabi {
+            border: 1px solid rgba(139, 134, 128, 0.3);
+            border-radius: 0px;
+        }
+
+        .border-kintsugi-gold {
+            border-image: linear-gradient(135deg, #D4AF37, #A0522D 40%, rgba(139, 134, 128, 0.2)) 1;
+        }
+
+        /* Crackle / Subtle Organic Texture Overlay */
+        .texture-crackle {
+            background-image: radial-gradient(#8B8680 0.5px, transparent 0.5px), radial-gradient(#8B8680 0.5px, #FAF0E6 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.03;
+        }
+
+        .dark-texture {
+            background-image: radial-gradient(#FAF0E6 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        /* Reveal animations on scroll */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Modal Backdrop */
+        .modal-backdrop {
+            background-color: rgba(54, 69, 79, 0.75);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-charcoal relative">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 w-full z-[100] bg-cream/90 backdrop-blur-md border-b border-stone/20 transition-all duration-300">
+        <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="group flex flex-col">
+                <span class="font-bold text-2xl tracking-tight text-clay group-hover:text-gold transition-colors duration-200">
+                    MARA LYZ
+                </span>
+                <span class="font-mono text-[0.7rem] uppercase tracking-widest text-stone -mt-1">
+                    Nails Academy
+                </span>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-charcoal">
+                <a href="#apresentacao" class="hover:text-clay transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all">Apresentação</a>
+                <a href="#sobre" class="hover:text-clay transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all">Sobre Mim</a>
+                <a href="#formacao" class="hover:text-clay transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all">Formação Técnica</a>
+                <a href="#competencias" class="hover:text-clay transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all">Diferenciais</a>
+                <a href="#academy" class="hover:text-clay transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all">Cursos & Atuação</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:block">
+                <button onclick="openModal('Cursos & Agendamentos')" class="bg-clay hover:bg-clay/90 text-cream font-semibold px-5 py-2.5 text-sm uppercase tracking-wider transition-all duration-200 active:translate-y-0.5 border-r-2 border-b-2 border-gold shadow-sm">
+                    Agendar ou Inscrever-se
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-charcoal focus:outline-none p-2" aria-label="Abrir Menu">
+                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-stone/30 px-6 py-6 transition-all">
+            <nav class="flex flex-col space-y-4 font-serif text-lg">
+                <a href="#apresentacao" class="mobile-link text-charcoal hover:text-clay">Apresentação</a>
+                <a href="#sobre" class="mobile-link text-charcoal hover:text-clay">Sobre Mim</a>
+                <a href="#formacao" class="mobile-link text-charcoal hover:text-clay">Formação Técnica</a>
+                <a href="#competencias" class="mobile-link text-charcoal hover:text-clay">Diferenciais</a>
+                <a href="#academy" class="mobile-link text-charcoal hover:text-clay">Cursos & Atuação</a>
+                <div class="pt-4 border-t border-stone/20">
+                    <button onclick="openModal('Atendimento')" class="w-full bg-clay text-cream py-3 text-center uppercase font-semibold text-sm tracking-wider">
+                        Agendar ou Inscrever-se
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="apresentacao" class="pt-32 pb-20 md:pt-40 md:pb-32 px-6 max-w-[1280px] mx-auto min-h-[90vh] flex flex-col justify-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Text Content (Asymmetric Layout) -->
+            <div class="lg:col-span-7 space-y-8 reveal-item">
+                <div class="inline-flex items-center space-x-3 bg-blush/30 px-3 py-1.5 border border-stone/20">
+                    <span class="w-2 h-2 bg-clay rounded-full"></span>
+                    <span class="font-mono text-xs uppercase tracking-widest text-charcoal">Especialista em Alongamento de Unhas</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-charcoal tracking-tight leading-[1.1] kintsugi-line">
+                    A beleza técnica elevada ao padrão de arte e formação profissional.
+                </h1>
+
+                <p class="text-lg sm:text-xl text-stone max-w-2xl font-normal leading-relaxed pt-2">
+                    Mara Lyz é empreendedora no segmento da beleza e proprietária da <strong class="text-clay font-semibold">Mara Lyz Nails Academy</strong>. Combinando precisão técnica e estética de alto padrão para transformar a autoestima de clientes e qualificar novas profissionais.
+                </p>
+
+                <!-- Tag List / Key Values -->
+                <div class="flex flex-wrap gap-3 font-mono text-xs text-charcoal pt-2">
+                    <span class="px-3 py-1.5 bg-cream border border-stone/40">BELEZA TÉCNICA</span>
+                    <span class="px-3 py-1.5 bg-cream border border-stone/40">FORMAÇÃO INTERNACIONAL</span>
+                    <span class="px-3 py-1.5 bg-cream border border-stone/40">ESMALTERIA DE ALTO PADRÃO</span>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button onclick="openModal('Inscrição em Curso')" class="bg-clay hover:bg-clay/90 text-cream px-8 py-4 font-semibold uppercase text-xs tracking-widest border-b-2 border-r-2 border-gold transition-all hover:shadow-md text-center">
+                        Cursos de Capacitação
+                    </button>
+                    <a href="#sobre" class="border border-stone hover:border-clay text-charcoal px-8 py-4 font-semibold uppercase text-xs tracking-widest text-center transition-colors">
+                        Conhecer Trajetória
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual Composition (Wabi-Sabi Asymmetry) -->
+            <div class="lg:col-span-5 reveal-item">
+                <div class="relative p-6 bg-cream border border-stone/30 shadow-lg">
+                    <!-- Decorative Gold Hairline Corner -->
+                    <div class="absolute -top-2 -right-2 w-12 h-12 border-t-2 border-r-2 border-gold pointer-events-none"></div>
+                    <div class="absolute -bottom-2 -left-2 w-12 h-12 border-b-2 border-l-2 border-clay pointer-events-none"></div>
+
+                    <!-- Organic Image / Graphic Placeholder with Alt & Subtle Frame -->
+                    <div class="relative bg-charcoal/5 aspect-[4/5] overflow-hidden flex flex-col justify-between p-8 border border-stone/20">
+                        <div class="flex justify-between items-start">
+                            <span class="font-mono text-xs text-stone uppercase tracking-widest">Mara Lyz / 38 Anos</span>
+                            <span class="font-mono text-xs text-clay font-bold">EST. ACADEMY</span>
+                        </div>
+
+                        <div class="my-auto text-center py-12">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full border border-gold flex items-center justify-center bg-cream/80 text-clay">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-charcoal italic">Mara Lyz Nails Academy</h3>
+                            <p class="text-sm font-mono text-stone mt-2">Atendimento & Formação de Elite</p>
+                        </div>
+
+                        <div class="border-t border-stone/20 pt-4 flex justify-between items-center text-xs font-mono text-stone">
+                            <span>ALONGAMENTO DE UNHAS</span>
+                            <span>MÉTODO TÉCNICO</span>
+                        </div>
+                    </div>
+
+                    <!-- Annotation Box -->
+                    <div class="mt-4 p-4 bg-blush/20 border-l-2 border-gold text-xs font-mono text-charcoal">
+                        "O cuidado com as unhas como expressão de elegância, técnica e oportunidade profissional."
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (SOBRE MIM) -->
+    <section id="sobre" class="py-24 bg-charcoal text-cream relative dark-texture">
+        <div class="max-w-[1280px] mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Quote & Meta -->
+                <div class="lg:col-span-5 space-y-6 reveal-item">
+                    <span class="font-mono text-xs uppercase tracking-widest text-gold block">Apresentação Profissional</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-cream leading-tight">
+                        Dedicação, visão estética e compromisso com o desenvolvimento da beleza.
+                    </h2>
+                    <div class="p-6 border-l-2 border-gold bg-cream/5 space-y-3">
+                        <p class="text-lg italic text-cream/90">
+                            "Aos 38 anos, reuni minha paixão pelo design e pelo cuidado minucioso para criar um espaço que é simultaneamente refúgio de autocuidado e centro de qualificação profissional."
+                        </p>
+                        <span class="font-mono text-xs text-gold block">— Mara Lyz</span>
+                    </div>
+                </div>
+
+                <!-- Right Detailed Profile -->
+                <div class="lg:col-span-7 space-y-6 text-cream/80 text-lg leading-relaxed reveal-item">
+                    <p>
+                        Com 38 anos de idade, <strong class="text-cream">Mara Lyz</strong> é uma empreendedora consolidada no segmento da beleza. Sua atuação transcende o atendimento convencional ao aliar precisão técnica, acolhimento e uma gestão voltada à excelência na <strong class="text-gold">Mara Lyz Nails Academy</strong>.
+                    </p>
+                    <p>
+                        Como proprietária de uma esmalteria de alto padrão, Mara desenvolveu uma metodologia de atendimento refinada para quem busca cuidados impecáveis. Paralelamente, atua ativamente como <strong class="text-cream">instrutora de cursos de alongamento de unhas</strong>, dedicando-se a compartilhar conhecimento técnico e prático para impulsionar a carreira de novas profissionais.
+                    </p>
+
+                    <!-- Feature Grid inside dark section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-stone/40">
+                        <div class="space-y-1">
+                            <span class="font-mono text-xs text-gold uppercase">01 / Empreendedorismo</span>
+                            <h4 class="text-xl font-bold text-cream">Esmalteria de Alto Padrão</h4>
+                            <p class="text-sm text-stone font-normal">Ambiente preparado para oferecer experiências exclusivas e tratamentos de alta performance.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="font-mono text-xs text-gold uppercase">02 / Educação</span>
+                            <h4 class="text-xl font-bold text-cream">Capacitação de Especialistas</h4>
+                            <p class="text-sm text-stone font-normal">Cursos estruturados para formar Nail Designers prontas para o mercado de alta exigência.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMATION & TECHNICAL CERTIFICATION -->
+    <section id="formacao" class="py-24 px-6 max-w-[1280px] mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-stone/30 reveal-item">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-clay font-semibold">Trajetória e Qualificação</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-charcoal mt-1">Formação Acadêmica & Técnica</h2>
+            </div>
+            <p class="font-mono text-xs text-stone uppercase tracking-wider mt-4 md:mt-0">
+                Fundamentação Sólida & Especialização Internacional
+            </p>
+        </div>
+
+        <!-- Asymmetric Cards for Education -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- International Course Highlight -->
+            <div class="md:col-span-7 bg-cream p-8 md:p-10 border border-stone/30 relative shadow-sm hover:border-gold transition-colors reveal-item">
+                <div class="absolute top-0 right-0 bg-gold text-charcoal font-mono text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
+                    Diferencial Internacional
+                </div>
+                <div class="font-mono text-xs text-clay uppercase tracking-widest mb-2">Especialização Avançada</div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-charcoal mb-4">Curso Internacional de Alongamento de Unhas</h3>
+                <div class="inline-block px-3 py-1 bg-blush/40 text-charcoal font-mono text-sm mb-6 border border-stone/20">
+                    Origem / Referência: Rússia
+                </div>
+                <p class="text-stone leading-relaxed">
+                    Formação técnica internacional no país referência mundial em simetria, cutilagem técnica e estrutura em alongamentos de unhas. O aprendizado da escola russa confere ao trabalho de Mara Lyz um nível superior de acabamento e durabilidade.
+                </p>
+            </div>
+
+            <!-- SENAC Interior Design -->
+            <div class="md:col-span-5 bg-cream p-8 md:p-10 border border-stone/30 relative shadow-sm hover:border-clay transition-colors reveal-item">
+                <div class="font-mono text-xs text-stone uppercase tracking-widest mb-2">SENAC</div>
+                <h3 class="text-2xl font-bold text-charcoal mb-3">Design de Interiores</h3>
+                <p class="text-stone text-base leading-relaxed mb-6">
+                    A formação em Design de Interiores traz harmonia visual, noções de proporção, simetria e estética espacial, agregando valor direto na composição e refinamento do trabalho com unhas.
+                </p>
+                <span class="font-mono text-xs text-clay font-medium uppercase tracking-wider">→ Visão Estética e Proporção</span>
+            </div>
+
+            <!-- Basic Education Badge Block -->
+            <div class="md:col-span-12 bg-cream/60 p-6 border border-stone/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 reveal-item">
+                <div class="flex items-center space-x-4">
+                    <div class="w-3 h-3 bg-matcha rounded-full"></div>
+                    <div>
+                        <h4 class="font-bold text-charcoal text-lg">Educação Formal Base</h4>
+                        <p class="text-stone text-sm">Ensino Fundamental e Ensino Médio completos</p>
+                    </div>
+                </div>
+                <span class="font-mono text-xs text-stone border border-stone/30 px-3 py-1">FORMAÇÃO REGULAR CONCLUÍDA</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COMPETENCIES & DIFFERENTIALS -->
+    <section id="competencias" class="py-24 bg-blush/20 border-y border-stone/20">
+        <div class="max-w-[1280px] mx-auto px-6">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-item">
+                <span class="font-mono text-xs uppercase tracking-widest text-clay font-semibold">Pilares de Atuação</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-charcoal mt-2">Competências & Valores Técnicos</h2>
+                <p class="text-stone font-normal text-lg mt-3">
+                    As diretrizes que fundamentam a prática diária no atendimento e o ensino na Mara Lyz Nails Academy.
+                </p>
+            </div>
+
+            <!-- Asymmetric 4-card Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Pillar 1 -->
+                <div class="bg-cream p-6 border border-stone/30 flex flex-col justify-between hover:translate-y-[-2px] transition-transform reveal-item">
+                    <div>
+                        <div class="w-10 h-10 bg-clay/10 text-clay font-mono font-bold flex items-center justify-center text-sm mb-6 border border-clay/20">
+                            01
+                        </div>
+                        <h3 class="text-xl font-bold text-charcoal mb-3">Beleza Técnica</h3>
+                        <p class="text-stone text-sm leading-relaxed">
+                            União entre o rigor técnico exigido em procedimentos de unhas e a harmonização estética personalizada para cada perfil de cliente.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone/20 font-mono text-[11px] text-stone">
+                        PRECISÃO & ESTÉTICA
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-cream p-6 border border-stone/30 flex flex-col justify-between hover:translate-y-[-2px] transition-transform reveal-item">
+                    <div>
+                        <div class="w-10 h-10 bg-gold/10 text-gold font-mono font-bold flex items-center justify-center text-sm mb-6 border border-gold/20">
+                            02
+                        </div>
+                        <h3 class="text-xl font-bold text-charcoal mb-3">Alongamento de Unhas</h3>
+                        <p class="text-stone text-sm leading-relaxed">
+                            Especialização em técnicas modernas e resistentes, garantindo curvatura ideal, naturalidade e acabamento refinado.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone/20 font-mono text-[11px] text-stone">
+                        MÉTODO INTERNACIONAL
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-cream p-6 border border-stone/30 flex flex-col justify-between hover:translate-y-[-2px] transition-transform reveal-item">
+                    <div>
+                        <div class="w-10 h-10 bg-matcha/10 text-matcha font-mono font-bold flex items-center justify-center text-sm mb-6 border border-matcha/20">
+                            03
+                        </div>
+                        <h3 class="text-xl font-bold text-charcoal mb-3">Cuidado & Saúde</h3>
+                        <p class="text-stone text-sm leading-relaxed">
+                            Compromisso absoluto com a saúde das unhas naturais, aplicação de protocolos de biossegurança e produtos de alto padrão.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone/20 font-mono text-[11px] text-stone">
+                        PRESERVAÇÃO UNGUEAL
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="bg-cream p-6 border border-stone/30 flex flex-col justify-between hover:translate-y-[-2px] transition-transform reveal-item">
+                    <div>
+                        <div class="w-10 h-10 bg-indigo/10 text-indigo font-mono font-bold flex items-center justify-center text-sm mb-6 border border-indigo/20">
+                            04
+                        </div>
+                        <h3 class="text-xl font-bold text-charcoal mb-3">Capacitação Profissional</h3>
+                        <p class="text-stone text-sm leading-relaxed">
+                            Didática voltada ao desenvolvimento real de alunas, transformando iniciantes e profissionais em especialistas do setor.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone/20 font-mono text-[11px] text-stone">
+                        FORMAÇÃO & ENSINO
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACADEMY & SERVICES SECTION -->
+    <section id="academy" class="py-24 px-6 max-w-[1280px] mx-auto">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Intro Left Header -->
+            <div class="lg:col-span-4 space-y-6 reveal-item">
+                <span class="font-mono text-xs uppercase tracking-widest text-clay font-semibold">Atuação Profissional</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-charcoal leading-tight">
+                    Mara Lyz Nails Academy
+                </h2>
+                <p class="text-stone text-base leading-relaxed">
+                    Duas frentes de excelência: atendimento exclusivo para clientes que exigem unhas de alto padrão e mentoria completa para quem deseja se destacar no mercado.
+                </p>
+
+                <div class="p-4 bg-cream border border-stone/30 text-xs font-mono space-y-2 text-stone">
+                    <p class="font-bold text-charcoal uppercase">Esmalteria de Alto Padrão</p>
+                    <p>• Atendimento Exclusivo</p>
+                    <p>• Alongamentos de Alta Durabilidade</p>
+                    <p>• Estética e Saúde para Unhas</p>
+                </div>
+            </div>
+
+            <!-- Two Main Offerings (Services vs Courses) -->
+            <div class="lg:col-span-8 space-y-8 reveal-item">
+                
+                <!-- Card 1: Esmalteria -->
+                <div class="bg-cream border border-stone/30 p-8 relative flex flex-col md:flex-row justify-between gap-6 hover:border-gold transition-all">
+                    <div class="space-y-3">
+                        <span class="font-mono text-xs text-clay uppercase">Atendimento ao Cliente</span>
+                        <h3 class="text-2xl font-bold text-charcoal">Esmalteria de Alto Padrão</h3>
+                        <p class="text-stone text-sm max-w-lg leading-relaxed">
+                            Serviços especializados no cuidado com as unhas, alongamentos com técnicas importadas, acabamento delicado e materiais rigorosamente selecionados para garantir elegância e resistência.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[11px] font-mono px-2 py-1 bg-stone/10 text-charcoal">Alongamento</span>
+                            <span class="text-[11px] font-mono px-2 py-1 bg-stone/10 text-charcoal">Cuidado Técnico</span>
+                            <span class="text-[11px] font-mono px-2 py-1 bg-stone/10 text-charcoal">Alto Padrão</span>
+                        </div>
+                    </div>
+                    <div class="md:self-center">
+                        <button onclick="openModal('Agendamento de Serviços')" class="w-full md:w-auto bg-charcoal text-cream hover:bg-clay px-6 py-3 font-mono text-xs uppercase tracking-wider transition-colors">
+                            Agendar Horário
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Academy & Cursos -->
+                <div class="bg-cream border-2 border-clay/40 p-8 relative flex flex-col md:flex-row justify-between gap-6 hover:border-clay transition-all">
+                    <div class="space-y-3">
+                        <span class="font-mono text-xs text-gold uppercase font-bold">Educação e Treinamentos</span>
+                        <h3 class="text-2xl font-bold text-charcoal">Cursos de Alongamento de Unhas</h3>
+                        <p class="text-stone text-sm max-w-lg leading-relaxed">
+                            Formação técnica ministrada diretamente por Mara Lyz. Oportunidade para profissionais aprenderem conceitos fundamentais e avançados, incluindo a técnica internacional adquirida na Rússia.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[11px] font-mono px-2 py-1 bg-clay/10 text-clay">Capacitação</span>
+                            <span class="text-[11px] font-mono px-2 py-1 bg-clay/10 text-clay">Certificação</span>
+                            <span class="text-[11px] font-mono px-2 py-1 bg-clay/10 text-clay">Mentoria Prática</span>
+                        </div>
+                    </div>
+                    <div class="md:self-center">
+                        <button onclick="openModal('Informações sobre Cursos')" class="w-full md:w-auto bg-clay text-cream hover:bg-clay/90 px-6 py-3 font-mono text-xs uppercase tracking-wider transition-colors border-b-2 border-gold">
+                            Informações sobre Cursos
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT / FOOTER SECTION -->
+    <footer id="contato" class="bg-charcoal text-cream pt-20 pb-12 border-t border-stone/30 dark-texture">
+        <div class="max-w-[1280px] mx-auto px-6">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-stone/40">
+                
+                <!-- Left Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-cream tracking-tight">MARA LYZ NAILS ACADEMY</h2>
+                        <p class="font-mono text-xs text-gold uppercase tracking-widest mt-1">Esmalteria de Alto Padrão & Educação Técnica</p>
+                    </div>
+
+                    <p class="text-stone text-sm leading-relaxed max-w-md">
+                        Entre em contato para agendar seu atendimento na esmalteria ou obter informações detalhadas sobre as próximas turmas dos cursos de alongamento de unhas.
+                    </p>
+
+                    <!-- Professional Summary Pills -->
+                    <div class="space-y-2 font-mono text-xs text-cream/70 pt-2">
+                        <p class="flex items-center space-x-2">
+                            <span class="text-gold">✓</span>
+                            <span>Especialista em Alongamento de Unhas (Técnica Internacional - Rússia)</span>
+                        </p>
+                        <p class="flex items-center space-x-2">
+                            <span class="text-gold">✓</span>
+                            <span>Formação em Design de Interiores (SENAC)</span>
+                        </p>
+                        <p class="flex items-center space-x-2">
+                            <span class="text-gold">✓</span>
+                            <span>Instrutora e Mentora de Profissionais da Beleza</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Quick Interactive Form -->
+                <div class="lg:col-span-7 bg-cream/5 p-8 border border-stone/40">
+                    <h3 class="text-xl font-bold text-cream mb-2">Solicitar Atendimento ou Informações de Cursos</h3>
+                    <p class="text-xs font-mono text-stone mb-6">Preencha os dados abaixo e entraremos em contato diretamente com você.</p>
+
+                    <form id="footer-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-mono text-xs text-stone mb-1 uppercase">Seu Nome</label>
+                                <input type="text" required class="w-full bg-cream/10 border border-stone/40 px-4 py-2.5 text-sm text-cream focus:outline-none focus:border-gold transition-colors" placeholder="Nome completo">
+                            </div>
+                            <div>
+                                <label class="block font-mono text-xs text-stone mb-1 uppercase">Seu Telefone / WhatsApp</label>
+                                <input type="tel" required class="w-full bg-cream/10 border border-stone/40 px-4 py-2.5 text-sm text-cream focus:outline-none focus:border-gold transition-colors" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-mono text-xs text-stone mb-1 uppercase">Interesse Principal</label>
+                            <select class="w-full bg-charcoal border border-stone/40 px-4 py-2.5 text-sm text-cream focus:outline-none focus:border-gold transition-colors">
+                                <option value="curso">Curso de Alongamento de Unhas (Capacitação)</option>
+                                <option value="agendamento">Agendamento na Esmalteria de Alto Padrão</option>
+                                <option value="duvidas">Outras Informações</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block font-mono text-xs text-stone mb-1 uppercase">Mensagem (Opcional)</label>
+                            <textarea rows="3" class="w-full bg-cream/10 border border-stone/40 px-4 py-2.5 text-sm text-cream focus:outline-none focus:border-gold transition-colors" placeholder="Escreva sua mensagem aqui..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-clay hover:bg-clay/90 text-cream py-3 font-semibold uppercase text-xs tracking-widest border-b-2 border-gold transition-colors">
+                            Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom Legal Bar -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between font-mono text-xs text-stone gap-4">
+                <p>© Mara Lyz Nails Academy. Todos os direitos reservados.</p>
+                <p>Beleza • Técnica • Formação Profissional</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE MODAL FOR COURSES / APPOINTMENTS -->
+    <div id="action-modal" class="fixed inset-0 z-[300] hidden flex items-center justify-center p-4 modal-backdrop">
+        <div class="bg-cream border-2 border-gold max-w-lg w-full p-8 relative shadow-2xl">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-stone hover:text-charcoal p-2 focus:outline-none font-mono text-xl">
+                ✕
+            </button>
+
+            <span id="modal-subtitle" class="font-mono text-xs text-clay uppercase tracking-widest block mb-1">Mara Lyz Nails Academy</span>
+            <h3 id="modal-title" class="text-2xl font-bold text-charcoal mb-4">Informações e Agendamentos</h3>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block font-mono text-xs text-stone mb-1 uppercase">Nome Completo</label>
+                    <input type="text" required class="w-full bg-cream border border-stone/40 px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-clay" placeholder="Digite seu nome">
+                </div>
+
+                <div>
+                    <label class="block font-mono text-xs text-stone mb-1 uppercase">WhatsApp / Contato</label>
+                    <input type="tel" required class="w-full bg-cream border border-stone/40 px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-clay" placeholder="(00) 00000-0000">
+                </div>
+
+                <div>
+                    <label class="block font-mono text-xs text-stone mb-1 uppercase">Selecione o Assunto</label>
+                    <select id="modal-select-subject" class="w-full bg-cream border border-stone/40 px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-clay">
+                        <option value="curso">Inscrição em Curso de Alongamento de Unhas</option>
+                        <option value="agendamento">Agendar Atendimento na Esmalteria</option>
+                        <option value="duvida">Dúvidas Gerais</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-xs text-stone mb-1 uppercase">Mensagem</label>
+                    <textarea rows="3" class="w-full bg-cream border border-stone/40 px-4 py-2.5 text-sm text-charcoal focus:outline-none focus:border-clay" placeholder="Como podemos ajudar você?"></textarea>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-clay text-cream py-3 font-semibold uppercase text-xs tracking-widest border-b-2 border-gold hover:bg-clay/90 transition-colors">
+                        Confirmar e Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast-message" class="fixed bottom-6 right-6 z-[500] hidden bg-charcoal text-cream border-l-4 border-gold p-4 font-mono text-xs shadow-xl max-w-sm">
+        <p id="toast-text">Solicitação enviada com sucesso!</p>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modal Functions
+        const modal = document.getElementById('action-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const modalSelect = document.getElementById('modal-select-subject');
+
+        function openModal(topic = 'Atendimento') {
+            if (modalTitle) {
+                modalTitle.textContent = topic;
+            }
+            if (topic.includes('Curso')) {
+                modalSelect.value = 'curso';
+            } else if (topic.includes('Agendar') || topic.includes('Serviços')) {
+                modalSelect.value = 'agendamento';
+            }
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close Modal on backdrop click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Form Handling Functions
+        function showToast(message) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = message;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast('Obrigado! Sua mensagem foi enviada para Mara Lyz Nails Academy.');
+            e.target.reset();
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            closeModal();
+            showToast('Solicitação recebida! Entraremos em contato em breve.');
+            e.target.reset();
+        }
+
+        // Scroll Intersection Observer for Animated Reveals
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal-item');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
